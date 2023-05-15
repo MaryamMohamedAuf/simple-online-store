@@ -53,7 +53,7 @@ else{
     <h1> <center>welcome</center></h1>
     <br>
 
-  <form method="Post" action="register.php" >
+  <form method="Post" action="login.php" >
     <br>
         <input type="name" name="name" placeholder="name" >
         <br>

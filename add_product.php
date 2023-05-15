@@ -34,6 +34,7 @@ echo "<p>Error adding product: " . mysqli_error($connection) . "</p>";
   }
 }
 
+
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -61,15 +62,16 @@ echo "<p>Error adding product: " . mysqli_error($connection) . "</p>";
      </style> </head>
  <body>
     <center>  <h2>Add Product</h2>  </center>
- <form method="post" enctype="multipart/form-data" >
+ <form method="post" enctype="multipart/form-data"> 
    
-    <input type="text" name="name" placeholder="name"><br>
-    <input type="text" name="description" placeholder="description"><br>
-    <input type="number" name="price" placeholder="price"><br>
-    <input type="file" name="image"><br>
+    <input type="text" name="name" placeholder="name" required><br>
+    <input type="text" name="description" placeholder="description"required><br>
+    <input type="number" name="price" placeholder="price"required><br>
+    <input type="file" name="image"required><br>
 
 
     <input type="submit" name="add" value="Add Product">
+    
         </form>		
 
  </body>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,6 @@
 	.container {
 	max-width:80%;
 	margin: 0 auto;
-	padding: 20px;
 	display: flex;
 	flex-wrap: wrap ;
 	justify-content: space-between;
@@ -23,6 +23,7 @@
 }
 .product {
 	width:30%;
+	height: 600px;
 	margin: 10px;
 	border: 2px solid gray;
 	border-radius: 15px;
@@ -37,6 +38,19 @@
 	max-height: 300px;
 	
 }
+.product button{
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	border-color: gray;
+	background-color: transparent;
+	
+}
+.product a{
+	text-decoration: none;
+	color: black;
+}
+
 
 </style>
 </head>
@@ -53,24 +67,25 @@
 			$result = mysqli_query($connection, $query);
 
 			if (mysqli_num_rows($result) > 0) {
-				while ($row = mysqli_fetch_assoc($result))
+				while ($row = mysqli_fetch_array($result))
 				 {
-					echo "<div class='product'>";
-					echo "<h2>" . $row['name'] . "</h2>";
-					echo " <center> <img src= ' ". $row['image'] ." '</center> ";
-
-					echo "<p>description : " . $row['description'] . "</p>";
-					echo "<p>Price: $" . $row['price'] . "</p>";
-					echo "</div>";
-					
-				}
-			} 
+				?>
+					<div class='product'>
+					<h2> <?php echo $row['name'];?> </h2>
+		   <center> <img src= <?php echo $row['image'];  ?> </center>
+					<p> description: <?php echo $row['description']; ?></p>
+					<p> Price: <?php echo $row['price']; ?></p>
+					<button> <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a></button>
+					<button><a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a></button>
+					</div>	
+			<?php	
+			}
+		} 
             else {
 				echo "<p>No products found.</p>";
 			}
+			?>
 
-	
-		?>
 	</div>
 </body>
 </html>

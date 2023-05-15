@@ -42,7 +42,7 @@
     <a href="register.php" target="_blank"> register </a>
     <a href="login.php" target="_blank"> login </a>
     <a  href="show_products.php"target="_blank"><span> our products </span></a>
-    <a  href="add_products.php"target="_blank"><span> add products </span></a>
+    <a  href="add_product.php"target="_blank"><span> add products </span></a>
 
 </nav>
  </header>   
