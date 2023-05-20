@@ -6,7 +6,7 @@ if (!isset($_SESSION)){
     session_start();
 }
 if( isset($_POST ['register'])){
-    $username=mysqli_real_escape_string($connection,$_POST['name']);
+    $username=  mysqli_real_escape_string($connection,$_POST['name']);
     $email=mysqli_real_escape_string($connection,$_POST['email']);
     $password1=mysqli_real_escape_string($connection,$_POST['password']);
     $password2=mysqli_real_escape_string($connection,$_POST['confirmpass']);
@@ -17,10 +17,8 @@ if ($password1 != $password2){
 else{
     $sql="insert into user(name,email,password) 
     values('$username','$email','$password1')";
-    mysqli_query ($connection,$sql);
 
-    $_SESSION ['name']=$username;
-    echo "welcome dear " . $_SESSION['name'];
+       mysqli_query ($connection,$sql);    
 }
 }
 ?>
@@ -29,7 +27,8 @@ else{
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
      <title>registeration</title>
      <style>
         *{margin: 10px;}
@@ -45,7 +44,8 @@ else{
         height: 50px;
        padding: 5px;
        margin: 5px;
-       border-radius: 10px;}
+       border-radius: 10px;
+    }
       
      </style>
 </head>
@@ -55,13 +55,13 @@ else{
 
   <form method="Post" action="login.php" >
     <br>
-        <input type="name" name="name" placeholder="name" >
+        <input type="text" name="name" placeholder="name" required >
         <br>
-<input type="email" name="email"placeholder="email" >
+<input type="email" name="email"placeholder="email" required>
 <br>
-<input type="number" name="password" placeholder="password">
+<input type="text" name="password" placeholder="password" required>
 <br>
-<input type="number" name="confirmpass" placeholder="confirm password">
+<input type="text" name="confirmpass" placeholder="confirm password" required>
 <br>
 
     <input type="submit" name="register" value="register ">

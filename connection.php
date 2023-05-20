@@ -10,6 +10,5 @@ if (!$connection)
 {
     die ("connectionfaild:" .mysqli_connect_error());
 
-}
-
+} 
 ?>

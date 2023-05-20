@@ -1,6 +1,8 @@
 <?php
     include 'connection.php';
+
     $id = $_GET['id'];
+
     $sql = "select * from pro where `id` ='$id'";
     $res = mysqli_query($connection, $sql);
     $data = mysqli_fetch_array($res);
@@ -18,6 +20,7 @@
             $image_path = $upload_dir . $image_name;
 
             if (move_uploaded_file($image_tmp_name, $image_path)) {
+                
                 $query = "UPDATE pro SET `image`='$image_path', `name`='$name',
                           `description`='$description', `price`='$price'
                           WHERE `id`='$id'";
@@ -51,7 +54,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edit</title>
     <style>

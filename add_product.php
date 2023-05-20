@@ -15,20 +15,23 @@
     $image_tmp_name = $_FILES['image']['tmp_name'];
 
     $upload_dir ='uploads/';
-    $image_path =$upload_dir.$image_name;
+    $image_path =$upload_dir. $image_name;
 
     if (move_uploaded_file($image_tmp_name, $image_path)) {
 
    $query = "INSERT INTO pro (`image`,`name`,`description`,`price`)
      VALUES ( '$image_path' , '$name' , '$description' , '$price' )";
      
-     if (mysqli_query($connection, $query)) {
+     if (
+        mysqli_query($connection, $query)) {
 
-    $res=mysqli_affected_rows($connection);
-if($res == 1)
-echo "<p>Product added successfully.</p>";
+    $result=mysqli_affected_rows($connection);
+if($result == 1){
+echo "Product added successfully.";
+header('location:show_products.php');
+}
 else 
-echo "<p>Error adding product: " . mysqli_error($connection) . "</p>";
+echo "Error adding product: " .  mysqli_error($connection);
 
      }
   }
@@ -40,7 +43,6 @@ echo "<p>Error adding product: " . mysqli_error($connection) . "</p>";
  <html lang="en">
  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add</title>
     <style>
@@ -62,13 +64,12 @@ echo "<p>Error adding product: " . mysqli_error($connection) . "</p>";
      </style> </head>
  <body>
     <center>  <h2>Add Product</h2>  </center>
- <form method="post" enctype="multipart/form-data"> 
+ <form method="post" enctype="multipart/form-data" > 
    
     <input type="text" name="name" placeholder="name" required><br>
     <input type="text" name="description" placeholder="description"required><br>
     <input type="number" name="price" placeholder="price"required><br>
-    <input type="file" name="image"required><br>
-
+    <input type="file" name="image" ><br>
 
     <input type="submit" name="add" value="Add Product">
     

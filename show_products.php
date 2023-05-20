@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>show</title>
     <style>
 		*{
@@ -12,6 +14,14 @@
 		}
 		h1{
 			margin: 20px;
+		}
+		a{
+			padding: 10px;
+			margin: 10px;
+			text-decoration: none;
+			color: black;
+			border-color: black;
+			
 		}
 	.container {
 	max-width:80%;
@@ -54,7 +64,9 @@
 
 </style>
 </head>
-<body>		
+<body>	
+<a  href="add_product.php"target="_blank"> add products </a>
+	
 	<center><h1>Products</h1> </center>
 
 	<div class="container">
@@ -67,25 +79,29 @@
 			$result = mysqli_query($connection, $query);
 
 			if (mysqli_num_rows($result) > 0) {
+
 				while ($row = mysqli_fetch_array($result))
 				 {
 				?>
 					<div class='product'>
-					<h2> <?php echo $row['name'];?> </h2>
-		   <center> <img src= <?php echo $row['image'];  ?> </center>
+					<h2> <?= $row['name'];?> </h2>
+		   <center> <img src= <?php echo $row['image']; ?> </center>
 					<p> description: <?php echo $row['description']; ?></p>
 					<p> Price: <?php echo $row['price']; ?></p>
+
 					<button> <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a></button>
 					<button><a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a></button>
-					</div>	
+					
+				
+				</div>	
 			<?php	
 			}
 		} 
             else {
-				echo "<p>No products found.</p>";
+				echo "No products found";
 			}
 			?>
-
+<p> 
 	</div>
 </body>
 </html>
