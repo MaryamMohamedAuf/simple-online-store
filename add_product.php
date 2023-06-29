@@ -10,6 +10,7 @@
     $name=  mysqli_real_escape_string($connection, $_POST['name']);
     $description=  mysqli_real_escape_string($connection, $_POST['description']);
     $price=  mysqli_real_escape_string($connection, $_POST['price']);
+    $discount=  mysqli_real_escape_string($connection, $_POST['discount']);
 
     $image_name = $_FILES['image']['name'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -19,8 +20,8 @@
 
     if (move_uploaded_file($image_tmp_name, $image_path)) {
 
-   $query = "INSERT INTO pro (`image`,`name`,`description`,`price`)
-     VALUES ( '$image_path' , '$name' , '$description' , '$price' )";
+   $query = "INSERT INTO pro (`image`,`name`,`description`,`price`,`discount`)
+     VALUES ( '$image_path' , '$name' , '$description' , '$price' ,'$discount')";
      
      if (
         mysqli_query($connection, $query)) {
@@ -69,6 +70,8 @@ echo "Error adding product: " .  mysqli_error($connection);
     <input type="text" name="name" placeholder="name" required><br>
     <input type="text" name="description" placeholder="description"required><br>
     <input type="number" name="price" placeholder="price"required><br>
+    <input type="number" name="discount" placeholder="discount percentage"required><br>
+
     <input type="file" name="image" ><br>
 
     <input type="submit" name="add" value="Add Product">

@@ -1,8 +1,11 @@
 <?php
 
 include 'connection.php';
+session_start();
 
-if ( isset($_POST ['add'])) {
+       $user_id =0;
+
+if ( isset($_POST ['login'])) {
    
     $username = mysqli_real_escape_string($connection, $_POST['name']);
     $password = mysqli_real_escape_string($connection, $_POST['password']);
@@ -12,14 +15,22 @@ if ( isset($_POST ['add'])) {
 
     $result = mysqli_query($connection, $query);
     
-    if (mysqli_num_rows($result) == 1) {
+    if (mysqli_num_rows($result) == 1){
+        
+        $id = mysqli_fetch_array($result);
+
+        $user_id = $id['user_id'];
+// Store user ID in session variable
+      $_SESSION['user_id'] = $user_id;
+
         header('Location: home.php');
     }
         else{
             echo"user not found";
         }
        
-}
+}       
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +64,8 @@ if ( isset($_POST ['add'])) {
     <h1> <center>welcome</center></h1>
     <br>
 
-  <form method="Post" action="home.php" >
-    
+  <form method="Post" >
+
 <input type="text" name="name"placeholder="name" required>
 <br>
 <input type="number" name="password" placeholder="password" required>

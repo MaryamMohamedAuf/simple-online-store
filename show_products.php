@@ -88,6 +88,7 @@
 		   <center> <img src= <?php echo $row['image']; ?> </center>
 					<p> description: <?php echo $row['description']; ?></p>
 					<p> Price: <?php echo $row['price']; ?></p>
+					<p> discount: <?php echo $row['discount']; ?> %</p>
 
 					<button> <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a></button>
 					<button><a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a></button>

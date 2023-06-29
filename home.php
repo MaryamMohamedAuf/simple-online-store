@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,6 +98,8 @@ footer{
 <nav>
     <a href="register.php" target="_blank"> register </a>
     <a href="login.php" target="_blank"> login </a>
+	<a href="allOrders.php" target="_blank"> allOrders </a>
+
 
 </nav>
  </header>   
@@ -130,7 +135,13 @@ footer{
 		   <center> <img src= <?php echo $row['image']; ?> </center>
 					<p> description: <?php echo $row['description']; ?></p>
 					<p> Price: <?php echo $row['price']; ?></p>
-				</div>	
+					<p> discount: <?php echo $row['discount']; ?> %</p>
+
+					<button> <a href="cart.php?id=<?php echo $row['id']; ?>">add to cart</a></button>
+					<button><a href="favorities.php?id=<?php echo $row['id']; ?>">add to favorities</a></button>
+					<button><a href="wishlist.php?id=<?php echo $row['id']; ?>">add to wishlist</a></button>
+
+			</div>	
 			<?php	
 			}
 		} 
